@@ -1,0 +1,11 @@
+.map__placeholder {
+  display: none;
+}
+
+.map--nojs .map__placeholder {
+  display: block;
+}
+
+[class*="copyrights-pane"] {
+  display: none;
+}
