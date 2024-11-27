@@ -15,10 +15,24 @@
 
     <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
     <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
 
     <link rel="preload" href="img/content/Main-BG.jpg" as="image" />
+
+    <script>
+      const BEFORE_AFTER_SWITCH_INTERVAL_SEC = 0.8; // интервал между переключениями фото до/после в секундах
+    </script>
   </head>
   <body class="page__body">
+    <button class="page__button js-to-top">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m21.5 28c-.256 0-.512-.098-.707-.293l-11-11c-.391-.391-.391-1.023 0-1.414l11-11c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-10.293 10.293 10.293 10.293c.391.391.391 1.023 0 1.414-.195.195-.451.293-.707.293z"
+          fill="rgb(0,0,0)"
+        ></path>
+      </svg>
+    </button>
+
     <section class="main-title-page">
       <h1 class="main-title-page__title">Дмитрий Елисеев</h1>
       <h2 class="main-title-page__subtitle">Коммерческая ретушь</h2>
@@ -52,223 +66,255 @@
       </header>
     </section>
 
-    <section id="clean-up" class="section">
-      <div class="section__slide section__slide--title-page">
-        <h3 class="section__title">Рекламный clean&#8209;up</h3>
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/02.jpg" alt="Рекламный clean-up для Т-Банка" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/03.jpg" alt="Рекламный clean-up для Вкусно и точка" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/04.jpg" alt="Рекламный clean-up для Вкусно и точка" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/05.jpg" alt="Рекламный clean-up для Вкусно и точка" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/06.jpg" alt="Рекламный clean-up для МТС" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/07.jpg" alt="Рекламный clean-up для StreetBeat" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/08.jpg" alt="Рекламный clean-up для Яндекс Еда" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/09.jpg" alt="Рекламный clean-up для Indrive" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/10.jpg" alt="Рекламный clean-up для Момент" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/11.jpg" alt="Рекламный clean-up для Спортмастер" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/12.jpg" alt="Рекламный clean-up для Спортмастер" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/13.jpg" alt="Рекламный clean-up для FDM Sport" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/14.jpg" alt="Рекламный clean-up для Спортмастер" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/15.jpg" alt="Рекламный clean-up для Спортмастер" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/16.jpg" alt="Рекламный clean-up для Спортмастер" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/17.jpg" alt="Рекламный clean-up для ПИК" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/18.jpg" alt="Рекламный clean-up для Контур" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/19.jpg" alt="Рекламный clean-up для Новогоднее чудо" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/20.jpg" alt="Рекламный clean-up для Авито" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/21.jpg" alt="Рекламный clean-up для Geely" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/22.jpg" alt="Рекламный clean-up для Geely" />
-      </div>
-    </section>
+    <!-- <section id="clean-up" class="section"> -->
+    <div id="clean-up" class="section__slide section__slide--title-page">
+      <h3 class="section__title">Рекламный clean&#8209;up</h3>
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/02.jpg" alt="Рекламный clean-up для Т-Банка" />
+    </div>
+    <!-- <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/03.jpg" alt="Рекламный clean-up для Вкусно и точка" />
+    </div> -->
+    <div class="section__slide">
+      <img class="section__slide-pic section__slide-pic--before" src="img/content/03_1.jpg" alt="ДО / Рекламный clean-up для Вкусно и точка" />
+      <img class="section__slide-pic section__slide-pic--after" src="img/content/03_2.jpg" alt="ПОСЛЕ/ Рекламный clean-up для Вкусно и точка" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/04.jpg" alt="Рекламный clean-up для Вкусно и точка" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/05.jpg" alt="Рекламный clean-up для Вкусно и точка" />
+    </div>
+    <!-- <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/06.jpg" alt="Рекламный clean-up для МТС" />
+    </div> -->
+    <div class="section__slide">
+      <img class="section__slide-pic section__slide-pic--before" src="img/content/06_1.jpg" alt="ДО / Рекламный clean-up для МТС" />
+      <img class="section__slide-pic section__slide-pic--after" src="img/content/06_2.jpg" alt="ПОСЛЕ / Рекламный clean-up для МТС" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/07.jpg" alt="Рекламный clean-up для StreetBeat" />
+    </div>
+    <!-- <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/08.jpg" alt="Рекламный clean-up для Яндекс Еда" />
+    </div> -->
+    <div class="section__slide">
+      <img class="section__slide-pic section__slide-pic--before" src="img/content/08_1.jpg" alt="ДО / Рекламный clean-up для Яндекс Еда" />
+      <img class="section__slide-pic section__slide-pic--after" src="img/content/08_2.jpg" alt="ПОСЛЕ / Рекламный clean-up для Яндекс Еда" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/09.jpg" alt="Рекламный clean-up для Indrive" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/10.jpg" alt="Рекламный clean-up для Момент" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/11.jpg" alt="Рекламный clean-up для Спортмастер" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/12.jpg" alt="Рекламный clean-up для Спортмастер" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/13.jpg" alt="Рекламный clean-up для FDM Sport" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/14.jpg" alt="Рекламный clean-up для Спортмастер" />
+    </div>
+    <!-- <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/15.jpg" alt="Рекламный clean-up для Спортмастер" />
+    </div> -->
+    <div class="section__slide">
+      <img class="section__slide-pic section__slide-pic--before" src="img/content/15_1.jpg" alt="ДО / Рекламный clean-up для Спортмастер" />
+      <img class="section__slide-pic section__slide-pic--after" src="img/content/15_2.jpg" alt="ПОСЛЕ / Рекламный clean-up для Спортмастер" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/16.jpg" alt="Рекламный clean-up для Спортмастер" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/17.jpg" alt="Рекламный clean-up для ПИК" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/18.jpg" alt="Рекламный clean-up для Контур" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/19.jpg" alt="Рекламный clean-up для Новогоднее чудо" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/20.jpg" alt="Рекламный clean-up для Авито" />
+    </div>
+    <!-- <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/21.jpg" alt="Рекламный clean-up для Geely" />
+    </div> -->
+    <div class="section__slide">
+      <img class="section__slide-pic section__slide-pic--before" src="img/content/21_1.jpg" alt="ДО / Рекламный clean-up для Geely" />
+      <img class="section__slide-pic section__slide-pic--after" src="img/content/21_2.jpg" alt="ПОСЛЕ / Рекламный clean-up для Geely" />
+    </div>
+    <!-- <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/22.jpg" alt="Рекламный clean-up для Geely" />
+    </div> -->
+    <div class="section__slide">
+      <img class="section__slide-pic section__slide-pic--before" src="img/content/22_1.jpg" alt="ДО / Рекламный clean-up для Geely" />
+      <img class="section__slide-pic section__slide-pic--after" src="img/content/22_2.jpg" alt="ПОСЛЕ / Рекламный clean-up для Geely" />
+    </div>
+    <!-- </section> -->
 
-    <section id="detailed-clipping" class="section">
-      <div class="section__slide section__slide--title-page">
-        <h3 class="section__title">Детальная обтравка и&nbsp;ретушь</h3>
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/24.jpg" alt="Ретушь для Дом.ру" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/25.jpg" alt="Ретушь для Авито" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/26.jpg" alt="Ретушь" />
-      </div>
-    </section>
+    <!-- <section id="detailed-clipping" class="section"> -->
+    <div id="detailed-clipping" class="section__slide section__slide--title-page">
+      <h3 class="section__title">Детальная обтравка и&nbsp;ретушь</h3>
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/24.jpg" alt="Ретушь для Дом.ру" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/25.jpg" alt="Ретушь для Авито" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/26.jpg" alt="Ретушь" />
+    </div>
+    <!-- </section> -->
 
-    <section id="compositing" class="section">
-      <div class="section__slide section__slide--title-page">
-        <h3 class="section__title">Композитинг для&nbsp;рекламы</h3>
-        <p class="section__subtitle">афиши, постеры фильмов и&nbsp;сериалов, обложки музыкальных альбомов</p>
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/28.jpg" alt="Композитинг для Kettler" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/29.jpg" alt="Композитинг для S7 Airlines" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/30.jpg" alt="Композитинг для Avito" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/31.jpg" alt="Композитинг" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/32.jpg" alt="Композитинг для L'One" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/33.jpg" alt="Композитинг для Forward" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/34.jpg" alt="Композитинг для kinotoaster.com" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/35.jpg" alt="Композитинг для kinotoaster.com" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/36.jpg" alt="Композитинг для TV Пятница" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/37.jpg" alt="Композитинг" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/38.jpg" alt="Композитинг для Спортмастер" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/39.jpg" alt="Композитинг для Спортмастер" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/40.jpg" alt="Композитинг" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/41.jpg" alt="Композитинг Ulukmanapo" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/42.jpg" alt="Композитинг для Яндекс Плюс" />
-      </div>
-    </section>
+    <!-- <section id="compositing" class="section"> -->
+    <div id="compositing" class="section__slide section__slide--title-page">
+      <h3 class="section__title">Композитинг для&nbsp;рекламы</h3>
+      <p class="section__subtitle">афиши, постеры фильмов и&nbsp;сериалов, обложки музыкальных альбомов</p>
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/28.jpg" alt="Композитинг для Kettler" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/29.jpg" alt="Композитинг для S7 Airlines" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/30.jpg" alt="Композитинг для Avito" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/31.jpg" alt="Композитинг" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/32.jpg" alt="Композитинг для L'One" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/33.jpg" alt="Композитинг для Forward" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/34.jpg" alt="Композитинг для kinotoaster.com" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/35.jpg" alt="Композитинг для kinotoaster.com" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/36.jpg" alt="Композитинг для TV Пятница" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/37.jpg" alt="Композитинг" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/38.jpg" alt="Композитинг для Спортмастер" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/39.jpg" alt="Композитинг для Спортмастер" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/40.jpg" alt="Композитинг" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/41.jpg" alt="Композитинг Ulukmanapo" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/42.jpg" alt="Композитинг для Яндекс Плюс" />
+    </div>
+    <!-- </section> -->
 
-    <section id="fashion-retouch" class="section">
-      <div class="section__slide section__slide--title-page">
-        <h3 class="section__title">Fashion ретушь</h3>
-        <p class="section__subtitle">editorial, лукбуки, интернет&#8209;магазины</p>
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/44.jpg" alt="Ретушь для Puma" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/45.jpg" alt="Ретушь для ЦУМ" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/46.jpg" alt="Ретушь для ЦУМ" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/47.jpg" alt="Ретушь для Present & Simple" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/48.jpg" alt="Ретушь для Present & Simple" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/49.jpg" alt="Ретушь для Present & Simple" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/50.jpg" alt="Ретушь для Present & Simple" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/51.jpg" alt="Ретушь для Sicky mag x Redo Upcycle" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/52.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/53.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/54.jpg" alt="Ретушь для Mad Frenzy" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/55.jpg" alt="Ретушь для Mad Frenzy" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/56.jpg" alt="Ретушь для Mad Frenzy" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/57.jpg" alt="Ретушь для Mad Frenzy" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/58.jpg" alt="Ретушь для signature element" />
-      </div>
-    </section>
+    <!-- <section id="fashion-retouch" class="section"> -->
+    <div id="fashion-retouch" class="section__slide section__slide--title-page">
+      <h3 class="section__title">Fashion ретушь</h3>
+      <p class="section__subtitle">editorial, лукбуки, интернет&#8209;магазины</p>
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/44.jpg" alt="Ретушь для Puma" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/45.jpg" alt="Ретушь для ЦУМ" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/46.jpg" alt="Ретушь для ЦУМ" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/47.jpg" alt="Ретушь для Present & Simple" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/48.jpg" alt="Ретушь для Present & Simple" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/49.jpg" alt="Ретушь для Present & Simple" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/50.jpg" alt="Ретушь для Present & Simple" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/51.jpg" alt="Ретушь для Sicky mag x Redo Upcycle" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/52.jpg" alt="Ретушь" />
+    </div>
+    <!-- <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/53.jpg" alt="Ретушь" />
+    </div> -->
+    <div class="section__slide">
+      <img class="section__slide-pic section__slide-pic--before" src="img/content/53_1.jpg" alt="ДО / Ретушь" />
+      <img class="section__slide-pic section__slide-pic--after" src="img/content/53_2.jpg" alt="ПОСЛЕ / Ретушь" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/54.jpg" alt="Ретушь для Mad Frenzy" />
+    </div>
+    <!-- <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/55.jpg" alt="Ретушь для Mad Frenzy" />
+    </div> -->
+    <div class="section__slide">
+      <img class="section__slide-pic section__slide-pic--before" src="img/content/55_1.jpg" alt="ДО / Ретушь для Mad Frenzy" />
+      <img class="section__slide-pic section__slide-pic--after" src="img/content/55_2.jpg" alt="ПОСЛЕ / Ретушь для Mad Frenzy" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/56.jpg" alt="Ретушь для Mad Frenzy" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/57.jpg" alt="Ретушь для Mad Frenzy" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/58.jpg" alt="Ретушь для signature element" />
+    </div>
+    <!-- </section> -->
 
-    <section id="private-use" class="section">
-      <div class="section__slide section__slide--title-page">
-        <h3 class="section__title">Ретушь частных клиентских съёмок</h3>
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/60.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/61.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/62.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/63.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/64.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/65.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/66.jpg" alt="Ретушь" />
-      </div>
-      <div class="section__slide">
-        <img class="section__slide-pic" src="img/content/67.jpg" alt="Ретушь" />
-      </div>
-    </section>
+    <!-- <section id="private-use" class="section"> -->
+    <div id="private-use" class="section__slide section__slide--title-page">
+      <h3 class="section__title">Ретушь частных клиентских съёмок</h3>
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/60.jpg" alt="Ретушь" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/61.jpg" alt="Ретушь" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/62.jpg" alt="Ретушь" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/63.jpg" alt="Ретушь" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/64.jpg" alt="Ретушь" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/65.jpg" alt="Ретушь" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/66.jpg" alt="Ретушь" />
+    </div>
+    <div class="section__slide">
+      <img class="section__slide-pic" src="img/content/67.jpg" alt="Ретушь" />
+    </div>
+    <!-- </section> -->
 
     <footer class="footer">
       <nav class="footer__nav nav">

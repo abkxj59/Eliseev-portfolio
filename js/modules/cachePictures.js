@@ -1,8 +1,8 @@
 const PRIMARY_PICS_URL = [
-  '/img/content/02.jpg',
-  '/img/content/03.jpg',
-  '/img/content/04.jpg',
-  '/img/content/05.jpg',
+  '../img/content/02.jpg',
+  '../../img/content/03.jpg',
+  '../../../img/content/04.jpg',
+  'img/content/05.jpg',
   '/img/content/24.jpg',
   '/img/content/25.jpg',
   '/img/content/26.jpg',
