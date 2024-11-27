@@ -7,5 +7,6 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
     cachePictures();
     initButtonToTop();
+    initPicSwitches();
   });
 });
