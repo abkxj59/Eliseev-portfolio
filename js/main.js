@@ -3,10 +3,10 @@ import { initButtonToTop } from './modules/toTopButton.js';
 import { initPicSwitches } from './modules/picSwitches.js';
 // ---------------------------------
 
+cachePictures();
+initPicSwitches();
 window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
-    cachePictures();
     initButtonToTop();
-    initPicSwitches();
   });
 });
